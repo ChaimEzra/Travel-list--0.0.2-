@@ -1,0 +1,19 @@
+version: 1
+services:
+  - type: web
+    name: backend
+    env: python
+    buildCommand: |
+      cd backend
+      pip install -r requirements.txt
+    startCommand: |
+      cd backend
+      uvicorn main:app --host 0.0.0.0 --port 8000
+  - type: static
+    name: frontend
+    env: node
+    buildCommand: |
+      cd frontend
+      npm install
+      npm run dev
+    staticPublishPath: frontend/dist
